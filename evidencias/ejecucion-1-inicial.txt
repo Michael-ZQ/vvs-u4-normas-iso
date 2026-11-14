@@ -1,0 +1,82 @@
+Evidencia: ejecucion-1-inicial
+Fecha: 2026-11-14T05:57:42.126Z
+Node: v22.23.3 · win32
+Comando: node --test --test-reporter=spec tests/*.test.js
+Código de salida: 1
+------------------------------------------------------------
+✔ CP-01 crear una tarea válida con valores por defecto (13.4389ms)
+✔ CP-02 listar todas y filtrar por estado (38.2686ms)
+✔ CP-03 obtener una tarea por id (16.4926ms)
+✔ CP-04 cambiar el estado y guardarlo (23.1683ms)
+✔ CP-05 eliminar una tarea (23.6094ms)
+✔ CP-06 las tareas persisten entre ejecuciones (9.7878ms)
+✔ CN-01 título vacío, en blanco, ausente o no textual (8.8709ms)
+✔ CN-02 valores límite de título (100) y descripción (500) (15.0972ms)
+✔ CN-03 prioridad y estado inválidos (8.6582ms)
+✔ CN-04 id inexistente (8.7117ms)
+✔ CN-05 una tarea completada no cambia de estado (17.6381ms)
+✔ CN-06 ids inválidos (0.9699ms)
+✖ CN-07 no se reutiliza un id ya usado (6.8119ms)
+✔ CR-01 archivo que no es JSON (22.5329ms)
+✔ CR-02 JSON válido que no es una lista (12.3684ms)
+✖ CR-03 lista con elementos mal formados (14.0108ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 277.3181
+
+✖ failing tests:
+
+test at tests\gestor.test.js:134:1
+✖ CN-07 no se reutiliza un id ya usado (6.8119ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 4
+  
+      at TestContext.<anonymous> (.\tests\gestor.test.js:141:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\recuperacion.test.js:35:1
+✖ CR-03 lista con elementos mal formados (14.0108ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     titulo: 'x'
+  +   },
+  +   5
+  + ]
+  - []
+  
+      at comprobarRecuperacion (.\tests\recuperacion.test.js:12:10)
+      at TestContext.<anonymous> (.\tests\recuperacion.test.js:36:3)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { titulo: 'x' }, 5 ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

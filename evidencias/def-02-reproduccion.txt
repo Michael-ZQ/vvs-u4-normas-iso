@@ -1,0 +1,34 @@
+Evidencia: def-02
+Fecha: 2026-11-14T05:58:33.690Z
+Node: v22.23.3
+
+Contenido inicial de tareas.json: [{"titulo":"x"}, 5]
+
+$ node src/cli.js crear Nueva
+Creada #NaN [pendiente] (media) Nueva
+[código de salida: 0]
+
+$ node src/cli.js listar
+#undefined [undefined] (undefined) x
+#undefined [undefined] (undefined) undefined
+#null [pendiente] (media) Nueva
+[código de salida: 0]
+
+$ node src/cli.js eliminar 1
+Error: No existe una tarea con id 1
+[código de salida: 1]
+
+Contenido final de tareas.json:
+[
+  {
+    "titulo": "x"
+  },
+  5,
+  {
+    "titulo": "Nueva",
+    "descripcion": "",
+    "prioridad": "media",
+    "estado": "pendiente",
+    "id": null
+  }
+]

@@ -1,0 +1,71 @@
+Evidencia: cm-01
+Fecha: 2026-11-14T05:58:33.013Z
+Node: v22.23.3
+
+$ node src/cli.js crear "Estudiar ISO 25010" --prioridad alta
+Creada #1 [pendiente] (alta) Estudiar ISO 25010
+[código de salida: 0]
+
+$ node src/cli.js crear "Preparar informe" --descripcion "Seis apartados"
+Creada #2 [pendiente] (media) Preparar informe
+[código de salida: 0]
+
+$ node src/cli.js listar
+#1 [pendiente] (alta) Estudiar ISO 25010
+#2 [pendiente] (media) Preparar informe
+[código de salida: 0]
+
+$ node src/cli.js estado 1 en_progreso
+Actualizada #1 [en_progreso] (alta) Estudiar ISO 25010
+[código de salida: 0]
+
+$ node src/cli.js listar --estado en_progreso
+#1 [en_progreso] (alta) Estudiar ISO 25010
+[código de salida: 0]
+
+$ node src/cli.js ver 2
+#2 [pendiente] (media) Preparar informe
+[código de salida: 0]
+
+$ node src/cli.js eliminar 2
+Eliminada #2 [pendiente] (media) Preparar informe
+[código de salida: 0]
+
+$ node src/cli.js ver 2
+Error: No existe una tarea con id 2
+[código de salida: 1]
+
+$ node src/cli.js crear "   "
+Error: El título no puede estar vacío
+[código de salida: 1]
+
+$ node src/cli.js ver abc
+Error: Id inválido: NaN. Debe ser un entero positivo
+[código de salida: 1]
+
+$ node src/cli.js estado 1 hecha
+Error: Estado inválido: hecha. Use pendiente, en_progreso, completada
+[código de salida: 1]
+
+$ node src/cli.js ayuda
+Uso: node src/cli.js <comando> [argumentos]
+
+  crear "<título>" [--descripcion "<texto>"] [--prioridad baja|media|alta]
+  listar [--estado pendiente|en_progreso|completada]
+  ver <id>
+  estado <id> <pendiente|en_progreso|completada>
+  eliminar <id>
+
+Las tareas se guardan en data/tareas.json (o en la ruta de TAREAS_ARCHIVO).
+[código de salida: 0]
+
+Contenido final de tareas.json:
+[
+  {
+    "titulo": "Estudiar ISO 25010",
+    "descripcion": "",
+    "prioridad": "alta",
+    "estado": "en_progreso",
+    "id": 1
+  }
+]

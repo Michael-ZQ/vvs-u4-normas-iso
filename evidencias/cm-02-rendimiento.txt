@@ -1,0 +1,10 @@
+Evidencia: CM-02 rendimiento exploratorio
+Fecha: 2026-11-14T05:58:44.530Z
+Node: v22.23.3 · win32 · 12th Gen Intel(R) Core(TM) i7-12700H
+
+Crear 1000 tareas una por una: 10007 ms en total (10.01 ms por tarea)
+Tamaño del archivo con 1000 tareas: 128.8 KB
+listar() con 1000 tareas, 50 repeticiones: mediana 0.53 ms, máximo 12.05 ms
+crear() con 1000+ tareas, 50 repeticiones: mediana 11.26 ms, máximo 16.71 ms
+
+Limitación: una sola máquina, disco local y sin otras cargas controladas. Sirve como referencia, no como prueba de rendimiento formal.
