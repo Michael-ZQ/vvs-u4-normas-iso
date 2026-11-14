@@ -15,7 +15,7 @@ test("CP-01 crear una tarea válida con valores por defecto", () => {
     prioridad: "media",
     estado: "pendiente",
   });
-  assert.deepEqual(JSON.parse(leerArchivo()), [tarea]);
+  assert.deepEqual(JSON.parse(leerArchivo()), { ultimoId: 1, tareas: [tarea] });
 });
 
 test("CP-02 listar todas y filtrar por estado", () => {
@@ -46,9 +46,9 @@ test("CP-04 cambiar el estado y guardarlo", () => {
   const { gestor, leerArchivo } = nuevoEntorno();
   gestor.crear({ titulo: "Informe" });
   gestor.cambiarEstado(1, "en_progreso");
-  assert.equal(JSON.parse(leerArchivo())[0].estado, "en_progreso");
+  assert.equal(JSON.parse(leerArchivo()).tareas[0].estado, "en_progreso");
   gestor.cambiarEstado(1, "completada");
-  assert.equal(JSON.parse(leerArchivo())[0].estado, "completada");
+  assert.equal(JSON.parse(leerArchivo()).tareas[0].estado, "completada");
 });
 
 test("CP-05 eliminar una tarea", () => {
@@ -139,4 +139,13 @@ test("CN-07 no se reutiliza un id ya usado", () => {
   gestor.eliminar(3);
   const nueva = gestor.crear({ titulo: "D" });
   assert.equal(nueva.id, 4);
+});
+
+// Regresión de DEF-01: un archivo de la versión 1 (solo la lista) se sigue leyendo.
+test("CN-07b archivo del formato anterior continúa la numeración", () => {
+  const tarea = { id: 5, titulo: "Vieja", descripcion: "", prioridad: "baja", estado: "pendiente" };
+  const { gestor, avisos } = nuevoEntorno(JSON.stringify([tarea]));
+  assert.deepEqual(gestor.listar(), [tarea]);
+  assert.equal(gestor.crear({ titulo: "Nueva" }).id, 6);
+  assert.equal(avisos.length, 0);
 });

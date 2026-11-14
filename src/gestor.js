@@ -14,15 +14,16 @@ class GestorTareas {
       prioridad: v.validarPrioridad(prioridad),
       estado: "pendiente",
     };
-    const tareas = this.almacen.leer();
-    tarea.id = siguienteId(tareas);
-    tareas.push(tarea);
-    this.almacen.guardar(tareas);
+    const datos = this.almacen.leer();
+    datos.ultimoId += 1;
+    tarea.id = datos.ultimoId;
+    datos.tareas.push(tarea);
+    this.almacen.guardar(datos);
     return { ...tarea };
   }
 
   listar({ estado } = {}) {
-    const tareas = this.almacen.leer();
+    const { tareas } = this.almacen.leer();
     if (estado === undefined) return tareas;
     v.validarEstado(estado);
     return tareas.filter((t) => t.estado === estado);
@@ -30,7 +31,7 @@ class GestorTareas {
 
   obtener(id) {
     v.validarId(id);
-    const tarea = this.almacen.leer().find((t) => t.id === id);
+    const tarea = this.almacen.leer().tareas.find((t) => t.id === id);
     if (!tarea) throw new ErrorNoEncontrado(id);
     return tarea;
   }
@@ -38,30 +39,26 @@ class GestorTareas {
   cambiarEstado(id, estado) {
     v.validarId(id);
     v.validarEstado(estado);
-    const tareas = this.almacen.leer();
-    const tarea = tareas.find((t) => t.id === id);
+    const datos = this.almacen.leer();
+    const tarea = datos.tareas.find((t) => t.id === id);
     if (!tarea) throw new ErrorNoEncontrado(id);
     if (tarea.estado === "completada") {
       throw new ErrorEstado(`La tarea ${id} ya está completada y no puede cambiar de estado`);
     }
     tarea.estado = estado;
-    this.almacen.guardar(tareas);
+    this.almacen.guardar(datos);
     return { ...tarea };
   }
 
   eliminar(id) {
     v.validarId(id);
-    const tareas = this.almacen.leer();
-    const indice = tareas.findIndex((t) => t.id === id);
+    const datos = this.almacen.leer();
+    const indice = datos.tareas.findIndex((t) => t.id === id);
     if (indice === -1) throw new ErrorNoEncontrado(id);
-    const [eliminada] = tareas.splice(indice, 1);
-    this.almacen.guardar(tareas);
+    const [eliminada] = datos.tareas.splice(indice, 1);
+    this.almacen.guardar(datos);
     return eliminada;
   }
-}
-
-function siguienteId(tareas) {
-  return tareas.reduce((max, t) => Math.max(max, t.id), 0) + 1;
 }
 
 module.exports = { GestorTareas };
