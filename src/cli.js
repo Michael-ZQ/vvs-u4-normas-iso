@@ -2,6 +2,7 @@
 const path = require("node:path");
 const { AlmacenJSON } = require("./almacen");
 const { GestorTareas } = require("./gestor");
+const { ErrorValidacion } = require("./errores");
 
 const AYUDA = `Uso: node src/cli.js <comando> [argumentos]
 
@@ -27,6 +28,14 @@ function leerOpciones(args) {
   return { opciones, resto };
 }
 
+// DEF-03: se valida el texto escrito; con Number("abc") el mensaje mostraba NaN.
+function leerId(texto) {
+  if (!/^\d+$/.test(texto ?? "")) {
+    throw new ErrorValidacion(`Id inválido: ${texto ?? "(vacío)"}. Debe ser un entero positivo`);
+  }
+  return Number(texto);
+}
+
 function mostrar(tarea) {
   return `#${tarea.id} [${tarea.estado}] (${tarea.prioridad}) ${tarea.titulo}`;
 }
@@ -50,13 +59,13 @@ function ejecutar(argv, { gestor, salida = console.log }) {
       break;
     }
     case "ver":
-      salida(mostrar(gestor.obtener(Number(resto[0]))));
+      salida(mostrar(gestor.obtener(leerId(resto[0]))));
       break;
     case "estado":
-      salida(`Actualizada ${mostrar(gestor.cambiarEstado(Number(resto[0]), resto[1]))}`);
+      salida(`Actualizada ${mostrar(gestor.cambiarEstado(leerId(resto[0]), resto[1]))}`);
       break;
     case "eliminar":
-      salida(`Eliminada ${mostrar(gestor.eliminar(Number(resto[0])))}`);
+      salida(`Eliminada ${mostrar(gestor.eliminar(leerId(resto[0])))}`);
       break;
     default:
       salida(AYUDA);

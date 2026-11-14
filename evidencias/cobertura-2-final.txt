@@ -1,0 +1,48 @@
+Evidencia: cobertura-2-final
+Fecha: 2026-11-14T06:03:37.965Z
+Node: v22.23.3 · win32
+Comando: node --test --test-reporter=spec --experimental-test-coverage --test-coverage-include=src/** tests/*.test.js
+Código de salida: 0
+------------------------------------------------------------
+✔ CM-01a flujo básico por la CLI (6.3367ms)
+✔ CM-01b id no numérico en la CLI muestra lo escrito (1.6252ms)
+✔ CP-01 crear una tarea válida con valores por defecto (4.4113ms)
+✔ CP-02 listar todas y filtrar por estado (5.6063ms)
+✔ CP-03 obtener una tarea por id (4.308ms)
+✔ CP-04 cambiar el estado y guardarlo (4.3746ms)
+✔ CP-05 eliminar una tarea (4.0994ms)
+✔ CP-06 las tareas persisten entre ejecuciones (1.7549ms)
+✔ CN-01 título vacío, en blanco, ausente o no textual (2.0596ms)
+✔ CN-02 valores límite de título (100) y descripción (500) (2.9463ms)
+✔ CN-03 prioridad y estado inválidos (1.9079ms)
+✔ CN-04 id inexistente (1.8997ms)
+✔ CN-05 una tarea completada no cambia de estado (4.4677ms)
+✔ CN-06 ids inválidos (0.9525ms)
+✔ CN-07 no se reutiliza un id ya usado (5.734ms)
+✔ CN-07b archivo del formato anterior continúa la numeración (1.7987ms)
+✔ CR-01 archivo que no es JSON (5.9118ms)
+✔ CR-02 JSON válido que no es una lista (4.7219ms)
+✔ CR-03 lista con elementos mal formados (3.946ms)
+✔ CR-03b lista con dos tareas del mismo id (3.567ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.3904
+ℹ start of coverage report
+ℹ ---------------------------------------------------------------
+ℹ file           | line % | branch % | funcs % | uncovered lines
+ℹ ---------------------------------------------------------------
+ℹ src            |        |          |         | 
+ℹ  almacen.js    |  97.26 |    96.00 |  100.00 | 58-59
+ℹ  cli.js        |  89.53 |    95.00 |  100.00 | 76-84
+ℹ  errores.js    | 100.00 |   100.00 |  100.00 | 
+ℹ  gestor.js     | 100.00 |   100.00 |  100.00 | 
+ℹ  validacion.js |  97.59 |    97.30 |  100.00 | 25-26
+ℹ ---------------------------------------------------------------
+ℹ all files      |  96.11 |    97.22 |  100.00 | 
+ℹ ---------------------------------------------------------------
+ℹ end of coverage report

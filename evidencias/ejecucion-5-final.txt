@@ -1,0 +1,34 @@
+Evidencia: ejecucion-5-final
+Fecha: 2026-11-14T06:03:36.963Z
+Node: v22.23.3 · win32
+Comando: node --test --test-reporter=spec tests/*.test.js
+Código de salida: 0
+------------------------------------------------------------
+✔ CM-01a flujo básico por la CLI (20.4028ms)
+✔ CM-01b id no numérico en la CLI muestra lo escrito (1.7047ms)
+✔ CP-01 crear una tarea válida con valores por defecto (3.5775ms)
+✔ CP-02 listar todas y filtrar por estado (6.1655ms)
+✔ CP-03 obtener una tarea por id (3.2212ms)
+✔ CP-04 cambiar el estado y guardarlo (4.5925ms)
+✔ CP-05 eliminar una tarea (4.9206ms)
+✔ CP-06 las tareas persisten entre ejecuciones (2.3295ms)
+✔ CN-01 título vacío, en blanco, ausente o no textual (2.3856ms)
+✔ CN-02 valores límite de título (100) y descripción (500) (3.1209ms)
+✔ CN-03 prioridad y estado inválidos (2.2404ms)
+✔ CN-04 id inexistente (2.3793ms)
+✔ CN-05 una tarea completada no cambia de estado (3.0053ms)
+✔ CN-06 ids inválidos (1.2214ms)
+✔ CN-07 no se reutiliza un id ya usado (5.1399ms)
+✔ CN-07b archivo del formato anterior continúa la numeración (2.5495ms)
+✔ CR-01 archivo que no es JSON (5.108ms)
+✔ CR-02 JSON válido que no es una lista (3.8958ms)
+✔ CR-03 lista con elementos mal formados (3.0571ms)
+✔ CR-03b lista con dos tareas del mismo id (4.5194ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 137.2269

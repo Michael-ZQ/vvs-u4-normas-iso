@@ -1,0 +1,50 @@
+Evidencia: ejecucion-4-regresion-def03 (primer intento de corrección de DEF-03, no se hizo commit de ese código)
+Fecha: 2026-11-14T06:03:03.185Z
+Node: v22.23.3 · win32
+Comando: node --test --test-reporter=spec tests/*.test.js
+Código de salida: 1
+------------------------------------------------------------
+✖ CM-01a flujo básico por la CLI (2.1136ms)
+✔ CM-01b id no numérico en la CLI muestra lo escrito (2.1791ms)
+✔ CP-01 crear una tarea válida con valores por defecto (4.4777ms)
+✔ CP-02 listar todas y filtrar por estado (6.9809ms)
+✔ CP-03 obtener una tarea por id (3.5409ms)
+✔ CP-04 cambiar el estado y guardarlo (4.1078ms)
+✔ CP-05 eliminar una tarea (4.3658ms)
+✔ CP-06 las tareas persisten entre ejecuciones (1.5793ms)
+✔ CN-01 título vacío, en blanco, ausente o no textual (2.0971ms)
+✔ CN-02 valores límite de título (100) y descripción (500) (2.6206ms)
+✔ CN-03 prioridad y estado inválidos (2.7668ms)
+✔ CN-04 id inexistente (3.5377ms)
+✔ CN-05 una tarea completada no cambia de estado (3.1035ms)
+✔ CN-06 ids inválidos (0.961ms)
+✔ CN-07 no se reutiliza un id ya usado (4.7929ms)
+✔ CN-07b archivo del formato anterior continúa la numeración (2.6206ms)
+✔ CR-01 archivo que no es JSON (4.9904ms)
+✔ CR-02 JSON válido que no es una lista (4.2011ms)
+✔ CR-03 lista con elementos mal formados (2.9062ms)
+✔ CR-03b lista con dos tareas del mismo id (2.8128ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.2705
+
+✖ failing tests:
+
+test at tests\cli.test.js:13:1
+✖ CM-01a flujo básico por la CLI (2.1136ms)
+  ErrorValidacion: Id inválido: 1. Debe ser un entero positivo
+      at leerId (.\src\cli.js:34:11)
+      at ejecutar (.\src\cli.js:65:58)
+      at cli (.\tests\cli.test.js:8:3)
+      at TestContext.<anonymous> (.\tests\cli.test.js:16:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.start (node:internal/test_runner/test:944:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17) {
+    codigo: 'VALIDACION'
+  }
