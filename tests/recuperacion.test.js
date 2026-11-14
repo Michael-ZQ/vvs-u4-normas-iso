@@ -35,3 +35,9 @@ test("CR-02 JSON válido que no es una lista", () => {
 test("CR-03 lista con elementos mal formados", () => {
   comprobarRecuperacion('[{"titulo":"x"}, 5]');
 });
+
+// Regresión de DEF-02: otra forma de archivo dañado que da ids ambiguos.
+test("CR-03b lista con dos tareas del mismo id", () => {
+  const tarea = { id: 1, titulo: "x", descripcion: "", prioridad: "media", estado: "pendiente" };
+  comprobarRecuperacion(JSON.stringify([tarea, { ...tarea, titulo: "y" }]));
+});

@@ -52,7 +52,25 @@ function validarId(id) {
   return id;
 }
 
+// Revisa una tarea leída del archivo (DEF-02): el JSON puede haberse editado a mano o dañado.
+function esTareaValida(t) {
+  return (
+    t !== null &&
+    typeof t === "object" &&
+    Number.isInteger(t.id) &&
+    t.id > 0 &&
+    typeof t.titulo === "string" &&
+    t.titulo.trim().length > 0 &&
+    t.titulo.length <= MAX_TITULO &&
+    typeof t.descripcion === "string" &&
+    t.descripcion.length <= MAX_DESCRIPCION &&
+    PRIORIDADES.includes(t.prioridad) &&
+    ESTADOS.includes(t.estado)
+  );
+}
+
 module.exports = {
+  esTareaValida,
   ESTADOS,
   PRIORIDADES,
   MAX_TITULO,

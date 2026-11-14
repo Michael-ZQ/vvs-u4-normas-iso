@@ -1,0 +1,54 @@
+Evidencia: ejecucion-2-def02
+Fecha: 2026-11-14T06:01:27.421Z
+Node: v22.23.3 · win32
+Comando: node --test --test-reporter=spec tests/*.test.js
+Código de salida: 1
+------------------------------------------------------------
+✔ CP-01 crear una tarea válida con valores por defecto (3.9359ms)
+✔ CP-02 listar todas y filtrar por estado (5.7769ms)
+✔ CP-03 obtener una tarea por id (3.3879ms)
+✔ CP-04 cambiar el estado y guardarlo (4.5884ms)
+✔ CP-05 eliminar una tarea (3.7962ms)
+✔ CP-06 las tareas persisten entre ejecuciones (2.1853ms)
+✔ CN-01 título vacío, en blanco, ausente o no textual (2.7793ms)
+✔ CN-02 valores límite de título (100) y descripción (500) (2.8689ms)
+✔ CN-03 prioridad y estado inválidos (2.3455ms)
+✔ CN-04 id inexistente (2.2946ms)
+✔ CN-05 una tarea completada no cambia de estado (2.8398ms)
+✔ CN-06 ids inválidos (0.8907ms)
+✖ CN-07 no se reutiliza un id ya usado (6.211ms)
+✔ CR-01 archivo que no es JSON (6.0749ms)
+✔ CR-02 JSON válido que no es una lista (4.016ms)
+✔ CR-03 lista con elementos mal formados (3.3716ms)
+✔ CR-03b lista con dos tareas del mismo id (13.4351ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.5315
+
+✖ failing tests:
+
+test at tests\gestor.test.js:134:1
+✖ CN-07 no se reutiliza un id ya usado (6.211ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 4
+  
+      at TestContext.<anonymous> (.\tests\gestor.test.js:141:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

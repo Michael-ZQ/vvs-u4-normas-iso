@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const { esTareaValida } = require("./validacion");
 
 // Guarda y lee la lista de tareas en un archivo JSON.
 class AlmacenJSON {
@@ -18,6 +19,7 @@ class AlmacenJSON {
       if (!Array.isArray(datos)) {
         throw new Error("el archivo no contiene una lista de tareas");
       }
+      revisarTareas(datos);
       return datos;
     } catch (error) {
       return this.#recuperar(error);
@@ -38,6 +40,16 @@ class AlmacenJSON {
         `Se guardó una copia en ${path.basename(respaldo)} y se empezó una lista nueva.`
     );
     return [];
+  }
+}
+
+function revisarTareas(tareas) {
+  const indice = tareas.findIndex((t) => !esTareaValida(t));
+  if (indice !== -1) {
+    throw new Error(`la tarea en la posición ${indice + 1} no es válida`);
+  }
+  if (new Set(tareas.map((t) => t.id)).size !== tareas.length) {
+    throw new Error("hay tareas con el mismo id");
   }
 }
 
