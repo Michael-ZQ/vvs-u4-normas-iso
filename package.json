@@ -1,0 +1,17 @@
+{
+  "name": "vvs-u4-normas-iso",
+  "version": "1.0.0",
+  "description": "Gestor de tareas en Node.js evaluado con ISO/IEC 25010 e ISO/IEC/IEEE 29119",
+  "main": "src/gestor.js",
+  "bin": { "tareas": "src/cli.js" },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test tests/",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-include=src/** --test-coverage-lines=80 tests/",
+    "evidencia": "node scripts/evidencia.js",
+    "rendimiento": "node scripts/rendimiento.js"
+  },
+  "engines": { "node": ">=22" },
+  "author": "Michael Zaquinaula",
+  "license": "MIT"
+}
